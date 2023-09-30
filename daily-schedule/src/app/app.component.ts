@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 
-import {
-  addDays,
-  format,
-  getISOWeeksInYear,
-  getWeek,
-  getWeekOfMonth,
-} from 'date-fns'
+import { addDays, format } from 'date-fns'
 
 import {CategoriesInterface} from "./models/categories.interface";
+import {TasksInterface} from "./models/tasks.interface";
 
 @Component({
   selector: 'app-root',
@@ -26,24 +21,32 @@ export class AppComponent {
     { id: 6, name: 'Alimentação', color: '#ff6d01' }
   ];
 
-
+  public tasks: TasksInterface[] = [
+    { id: 1, category_id: 6, name: 'Café da manhã', start_date: '30/09/2023', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '30/09/2023', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 6, name: 'Almoçar', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 3, name: 'Iniciar o trabalho', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 1, name: 'Passar um tempo com ele todo dia.', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 1, name: 'Passar um tempo com ele todo dia.', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 5, name: 'Ir a academia', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 5, name: 'Ir a academia', start_date: '', end_date: '', status: 'Em andamento' },
+    { id: 1, category_id: 6, name: 'Jantar', start_date: '', end_date: '', status: 'Em andamento' }
+  ];
 
   public date = new Date();
 
-  public week_current: number = getWeek(this.date);
-  public weeks_in_current_month: number = getWeekOfMonth(this.date);
-  public weeks_in_current_year: number = getISOWeeksInYear(this.date);
-
   constructor(
   ) {
-    console.log(this.week_current);
-    console.log(this.weeks_in_current_month);
-    console.log(this.weeks_in_current_year);
-    console.log(this.weeks_in_current_year - this.week_current);
   }
 
   public getDays(): string[] {
-    const numberOfDays = 30;
+    const numberOfDays = 10;
 
     const daysArray = [];
     for (let i = 0; i < numberOfDays; i++) {
@@ -55,9 +58,11 @@ export class AppComponent {
     return daysArray;
   }
 
-  public getTheLastWeeksOfTheYear(): number[] {
-    return [];
+  public isMatchDay(first: string, second: string): boolean {
+    if (first && first === second) {
+      return true;
+    }
+    return false
   }
-
 
 }
