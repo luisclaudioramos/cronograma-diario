@@ -5,7 +5,7 @@
     <td>&nbsp;</td>
     <td>{{ category.name }}</td>
     <td [ngStyle]="{ 'background-color' : category.color }">&nbsp;</td>
-    <td *ngFor="let day of getDays()">&nbsp;</td>
+    <td *ngFor="let day of days">&nbsp;</td>
   </tr>
 
   <tr>
@@ -13,34 +13,22 @@
     <td>Tarefas</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td *ngFor="let day of getDays()">{{ day }}</td>
+    <td *ngFor="let day of days">{{ day }}</td>
   </tr>
 
-  <tr *ngFor="let hour of getDayHours()">
-    <td>{{ getTaskMatchWithHour(hour)?.category_id }}</td>
-    <td>{{ getTaskMatchWithHour(hour)?.name }}</td>
+  <tr *ngFor="let schedule of schedules">
+    <td>{{ schedule.task.category_id }}</td>
+    <td>{{ schedule.task.name }}</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-<!--    <td *ngFor="let day of getDays()">&nbsp;</td>-->
-    <ng-container *ngFor="let day of getDays()">
-      <td [ngStyle]="{
-        'background-color': isMatchDayAndHour(getTaskMatchWithHour(hour), day, hour) ? 'black' : '#ffffff'
-        }"
-      style="color: #ffffff; text-align: center;">{{ isMatchDayAndHour(getTaskMatchWithHour(hour), day, hour) ? hour : '' }}</td>
-    </ng-container>
+
+    <td *ngFor="let day of schedule.days"
+        [ngStyle]="{
+        'background-color': day === schedule.task.date_of_completion ? 'orange' : '#ffffff'
+        }">
+      {{ day === schedule.task.date_of_completion ? schedule.task.hour_of_completion : '' }}
+    </td>
+
   </tr>
-
-
-  <!--  <tr *ngFor="let task of tasks">-->
-  <!--    <td>{{ task.category_id }}</td>-->
-  <!--    <td>{{ task.name }}</td>-->
-  <!--    <td>&nbsp;</td>-->
-  <!--    <td>&nbsp;</td>-->
-  <!--    <ng-container *ngFor="let day of getDays()">-->
-  <!--      <td [ngStyle]="{-->
-  <!--      'background-color': isMatchDay(task.start_date, day) ? 'black' : '#ffffff'-->
-  <!--      }">&nbsp;</td>-->
-  <!--    </ng-container>-->
-  <!--  </tr>-->
 
 </table>
