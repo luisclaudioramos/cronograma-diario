@@ -1,6 +1,6 @@
 <table>
 
-  <tr *ngFor="let category of categories">
+  <tr *ngFor="let category of projects">
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>{{ category.name }}</td>
@@ -17,7 +17,7 @@
   </tr>
 
   <tr *ngFor="let schedule of schedules">
-    <td>{{ schedule.task.category_id }}</td>
+    <td>{{ schedule.task.project_id }}</td>
     <td>{{ schedule.task.name }}</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
